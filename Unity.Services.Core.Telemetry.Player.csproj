@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D31ABAB2-04E4-A457-8AC7-365BA0DDE4EE}</ProjectGuid>
+    <ProjectGuid>{AC3AA5FF-8A27-8872-929C-D0A4ACA91ED4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.Services.Core.Telemetry</AssemblyName>
@@ -668,15 +668,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.Services.Core.Player.csproj">
-      <Project>{4F648A65-97A4-9120-EC64-1A5EE5FE8527}</Project>
+      <Project>{89654234-9C5B-2444-1F2F-15B7B3C25CC8}</Project>
       <Name>Unity.Services.Core.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Internal.Player.csproj">
-      <Project>{FA2E687B-D63F-83BD-74FE-660445CE02A9}</Project>
+      <Project>{DB765D9F-45BF-EA0E-1567-0BD0AE16D5C9}</Project>
       <Name>Unity.Services.Core.Internal.Player</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{679BBDFB-DC40-1211-68D8-A9596EF2F796}</Project>
+      <Project>{B007B264-19C9-EBBE-EF1D-0ACA9A6DD1E7}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
   </ItemGroup>

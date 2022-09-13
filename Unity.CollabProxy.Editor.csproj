@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C6FB9A77-13D7-47D9-5D84-76724047523C}</ProjectGuid>
+    <ProjectGuid>{9C550770-03F7-C5FD-9E64-8B68D189B780}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.CollabProxy.Editor</AssemblyName>
@@ -134,8 +134,8 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\Views\Adapters\ListAdapters\ToggleableChangeListAdapter.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\Common\StringArrayContainer.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\UserInterface\CollaborateWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\Presenters\HistoryPresenter.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\EditorGameService\CloudCollabServiceIdentifier.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\Presenters\HistoryPresenter.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\Models\Providers\Collab.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\Components\TabPageComponent.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Editor\Collaborate\EditorGameService\CloudCollabTopMenu.cs" />
@@ -876,31 +876,31 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{A0AE3ED8-BA6B-3436-5089-0C6F3956850B}</Project>
+      <Project>{112EE518-E43D-704B-5165-C2ED8435E75B}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Editor.csproj">
-      <Project>{6E7E1325-E0F4-83E4-EA88-CDB7889A0AFB}</Project>
+      <Project>{C6AAE496-11F8-9FA8-C594-635337C9DE94}</Project>
       <Name>Unity.Services.Core.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Settings.Editor.csproj">
-      <Project>{B2E45D76-DBBB-6E97-70A3-CD78F47E528C}</Project>
+      <Project>{467C398F-95B8-F4BA-2AA7-8FF9C2CDD017}</Project>
       <Name>Unity.Settings.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{A5EEA62E-10B9-22AC-8BBF-0FBF54F3EC7B}</Project>
+      <Project>{52C38C9A-87EA-AB9C-B3B3-9DBD99C8A4E5}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{D3BA9A0B-68F9-3D3E-B199-DB3B7B89E933}</Project>
+      <Project>{013AC700-62BC-B911-7161-5615CA3C7A36}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{0BA72849-3AE7-CA1B-AE43-942AF6DA0C5D}</Project>
+      <Project>{DB228C02-D87D-B02E-683E-FC9BF0A39088}</Project>
       <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{EBDBA898-CE98-F672-91CE-BE45E52FE765}</Project>
+      <Project>{78FE49B8-FF44-EA5C-9D86-3A474D8E8F89}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>

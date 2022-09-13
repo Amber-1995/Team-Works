@@ -32,9 +32,9 @@ namespace ExtraX
         }
 
         private void OnDestroy()
-        {
+        { 
             timer.Destroy();
-            ActionManager.Instance?.Remove("Test", fun);
+            ActionManager.Instance.Remove("Test", fun);
         }
     }
 

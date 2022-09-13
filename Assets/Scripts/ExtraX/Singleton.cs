@@ -11,14 +11,6 @@ namespace ExtraX
         private static T instance;
         public static T Instance { get { return instance; } }
         public static bool IsInitialized { get { return instance != null; } }
-
-        protected virtual void OnDestroy()
-        {
-            if(instance == this)
-            {
-                instance = null;
-            }
-        }
         public static void Init(string objName)
         {
             if (instance != null) return;
