@@ -4,17 +4,11 @@ using UnityEngine;
 
 
 
+
 namespace ExtraX
 {
     public class MouseManager : Singleton<MouseManager>
     {
-
-    
-
-        public string[,] OnMouseButton;
-        public string[,] OnMouseButtonUp;
-        public string[,] OnMouseButtonDown;
-
 
         private Ray ray;
         private RaycastHit hit;

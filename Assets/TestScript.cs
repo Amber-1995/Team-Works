@@ -8,33 +8,19 @@ namespace ExtraX
     public class TestScript : MonoBehaviour
     {
         Timer timer;
-        void Awake()
+
+        private void Awake()
         {
-            timer = TimerManager.Instance.CreaterTimer();
-            timer.Add("Test", 1.0f);
-            ActionManager.Instance.Add("Test", fun);
+            timer = new Timer();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space) && timer.IsItDone("Test"))
+            if(Input.GetKeyDown(KeyCode.Space)&& timer.IsElapse(1.0d))
             {
-                Debug.Log("2333");
-                ActionManager.Instance.Invoke("Test");
-                timer.Countdown("Test");
+                Debug.Log("23333");
+                timer.Start();
             }
-        }
-
-        void fun(ActionMessage am)
-        {
-            Debug.Log("aaaaaaa");
-        }
-
-        private void OnDestroy()
-        { 
-            timer.Destroy();
-            ActionManager.Instance.Remove("Test", fun);
         }
     }
 

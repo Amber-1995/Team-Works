@@ -10,7 +10,6 @@ namespace ExtraX
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void RuntimeInit()
         {
-            TimerManager.Init("TimerManger");
             ActionManager.Init("ActionManager");
             MouseManager.Init("MouseManager");
         }
