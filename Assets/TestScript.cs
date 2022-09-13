@@ -7,21 +7,25 @@ namespace ExtraX
 {
     public class TestScript : MonoBehaviour
     {
-        Timer timer;
+  
 
-        private void Awake()
+        private void Start()
         {
-            timer = new Timer();
+            ActionManager.Instance.Add("Test", fun);
         }
 
-        private void Update()
+
+        private void fun(ActionMessage am )
         {
-            if(Input.GetKeyDown(KeyCode.Space)&& timer.IsElapse(1.0d))
-            {
-                Debug.Log("23333");
-                timer.Start();
-            }
+            Debug.Log("99999");
         }
+
+        private void OnDestroy()
+        {
+            ActionManager.Instance.Remove("Test", fun);
+        }
+
+
     }
 
 }
