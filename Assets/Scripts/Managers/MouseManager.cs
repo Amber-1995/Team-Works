@@ -13,44 +13,82 @@ namespace ExtraX
         private Ray ray;
         private RaycastHit hit;
 
-        private ActionsMouseButtonSetting OnMouseButton;
-        private ActionsMouseButtonSetting OnMouseButtonDown;
-        private ActionsMouseButtonSetting OnMouseButtonUp;
-        private ScrollWheelActionSetting OnScrollWheelRoll;
+        private MouseButtonActionSetting mouseButtonActionSetting;
+        private ScrollWheelActionSetting scrollWheelActionSetting;
+
+        private ActionMessage actionMessage;
+
 
         private void Awake()
         {
-            OnMouseButton = AssetDatabase.LoadAssetAtPath<ActionsMouseButtonSetting>(@"Assets/Settings/MouseActionSettings/OnMouseButton.asset");
-            OnMouseButtonDown = AssetDatabase.LoadAssetAtPath<ActionsMouseButtonSetting>(@"Assets/Settings/MouseActionSettings/OnMouseButtonDown.asset");
-            OnMouseButtonUp = AssetDatabase.LoadAssetAtPath<ActionsMouseButtonSetting>(@"Assets/Settings/MouseActionSettings/OnMouseButtonUp.asset");
-            OnScrollWheelRoll = AssetDatabase.LoadAssetAtPath<ScrollWheelActionSetting>(@"Assets/Settings/MouseActionSettings/OnScrollWheelRoll");
+            actionMessage = new ActionMessage();
+
+            mouseButtonActionSetting = AssetDatabase.LoadAssetAtPath<MouseButtonActionSetting>(@"Assets/Settings/MouseActionSettings/MouseButtonActionSetting.asset");
+            scrollWheelActionSetting = AssetDatabase.LoadAssetAtPath<ScrollWheelActionSetting>(@"Assets/Settings/MouseActionSettings/ScrollWheelActionSetting.asset");
         }
         
-            
-
         private void Update()
         {
-            foreach( var i in OnMouseButton.actionsMouseButton)
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            actionMessage.value["ScrollWheel"] = Input.GetAxis("Mouse ScrollWheel");
+            actionMessage.vec2["CursorPosition"] = Input.mousePosition;
+
+            if(Physics.Raycast(ray, out hit))
             {
-                if(Input.GetMouseButton((int)i.mouseButton))
+                actionMessage.vec3["HitPosition"] = hit.point;
+
+                actionMessage.message["Tag"] = hit.collider.tag;
+            }
+            
+
+            ProcessMouseButtonAction();
+
+            ProcessScrollWheelAction();
+        }
+
+        private void ProcessMouseButtonAction()
+        {
+            foreach( var actionTrigger in mouseButtonActionSetting.actionTriggers)
+            {
+                if(ProcessTriggerSet(actionTrigger.triggerSet))
                 {
-                    ActionManager.Instance.Invoke(i.actionName);
+                    ActionManager.Instance.Invoke(actionTrigger.actionName,actionMessage);
                 }
             }
+        }
 
-            foreach (var i in OnMouseButtonDown.actionsMouseButton)
+
+        private bool ProcessTriggerSet(List<MouseTrigger> triggerSet)
+        {
+            foreach (var trigger in triggerSet)
             {
-                if (Input.GetMouseButtonDown((int)i.mouseButton))
-                {
-                    ActionManager.Instance.Invoke(i.actionName);
-                }
+                if(!ProcessTrigger(trigger)) return false;
             }
+            return true;
+        }
 
-            foreach (var i in OnMouseButtonUp.actionsMouseButton)
+        private bool ProcessTrigger(MouseTrigger trigger)
+        {
+            switch(trigger.buttonState)
             {
-                if (Input.GetMouseButtonUp((int)i.mouseButton))
+                case ButtonState.Down:
+                    return Input.GetMouseButtonDown((int)trigger.mouseButton);
+                case ButtonState.Up:
+                    return Input.GetMouseButtonUp((int)trigger.mouseButton);
+                case ButtonState.Hold:
+                    return Input.GetMouseButton((int)trigger.mouseButton);
+            }
+            return false;
+        }
+
+        private void ProcessScrollWheelAction()
+        {
+            if( actionMessage.value["ScrollWheel"] != 0.0f)
+            {
+                foreach( var actionName in scrollWheelActionSetting.actions)
                 {
-                    ActionManager.Instance.Invoke(i.actionName);
+                    ActionManager.Instance.Invoke(actionName,actionMessage);
                 }
             }
         }

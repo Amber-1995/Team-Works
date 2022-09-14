@@ -15,7 +15,7 @@ namespace ExtraX
         }
 
 
-        private void fun(ActionMessage am )
+        private void fun(ActionMessage am)
         {
             Debug.Log("99999");
         }

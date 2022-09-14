@@ -12,7 +12,7 @@ namespace ExtraX
 
         public Timer()
         {
-            startTime = Time.realtimeSinceStartupAsDouble;
+            startTime = double.MinValue;
         }
 
         public void Start()

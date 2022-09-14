@@ -6,15 +6,15 @@ using UnityEditor;
 
 namespace ExtraX
 {
-    
     public class ActionMessage
     {
-        public float value;
-        public Vector2 axis;
-        public Vector2 position2d;
-        public Vector3 position3d;
-        public string Message;
+        public Dictionary<string, float> value = new Dictionary<string, float>();
+        public Dictionary<string, Vector2> vec2 = new Dictionary<string, Vector2>();
+        public Dictionary<string, Vector3> vec3 = new Dictionary<string, Vector3>();
+        public Dictionary<string, Vector4> vec4 = new Dictionary<string, Vector4>();
+        public Dictionary<string, string> message = new Dictionary<string, string>();
     }
+   
 
     public class ActionManager : Singleton<ActionManager>
     {
@@ -42,11 +42,6 @@ namespace ExtraX
             {
                 actionDic[actionName] -= action;
             }
-        }
-
-        public void Invoke(string actionName)
-        {
-            actionDic[actionName]?.Invoke(new ActionMessage());
         }
 
         public void Invoke(string actionName, ActionMessage actionMessage)
