@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5396350eded8dec4daadb114eda4024b, type: 3}
   m_Name: ScrollWheelActionSetting
   m_EditorClassIdentifier: 
-  actions:
-  - Test
+  actions: []

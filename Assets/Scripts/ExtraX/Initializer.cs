@@ -11,7 +11,7 @@ namespace ExtraX
         static void RuntimeInit()
         {
             ActionManager.Init("ActionManager");
-            MouseManager.Init("MouseManager");
+            InputManager.Init("MouseManager");
         }
 
 

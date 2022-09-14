@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 namespace ExtraX
@@ -9,20 +10,20 @@ namespace ExtraX
     {
   
 
-        private void Start()
+        private void OnEnable()
         {
-            ActionManager.Instance.Add("Test", fun);
+            ActionManager.Add("Test", fun);
         }
 
 
-        private void fun(ActionMessage am)
+        private void fun()
         {
-            Debug.Log("99999");
+            Debug.Log(InputManager.RightStick);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            ActionManager.Instance.Remove("Test", fun);
+            ActionManager.Remove("Test", fun);
         }
 
 

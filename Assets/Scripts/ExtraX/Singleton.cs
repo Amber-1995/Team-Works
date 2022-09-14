@@ -8,14 +8,12 @@ namespace ExtraX
 {
     public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
-        private static T instance;
-        public static T Instance { get { return instance; } }
-        public static bool IsInitialized { get { return instance != null; } }
-        public static void Init(string objName)
+        protected static T instance;
+        public static void Init(string name)
         {
             if (instance != null) return;
 
-            var gameObj = new GameObject { name = objName };
+            var gameObj = new GameObject { name = name };
             instance = gameObj.AddComponent<T>();
             DontDestroyOnLoad(gameObj);
         }
