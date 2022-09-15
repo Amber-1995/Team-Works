@@ -48,13 +48,13 @@ namespace ExtraX
 
         private void Awake()
         {
-            keyActionSetting = AssetDatabase.LoadAssetAtPath<KeyActionSetting>(@"Assets/Settings/MouseActionSettings/KeyActionSetting.asset");
+            keyActionSetting = AssetDatabase.LoadAssetAtPath<KeyActionSetting>(@"Assets/Settings/InputActionSettings/KeyActionSetting.asset");
 
-            scrollWheelActionSetting = AssetDatabase.LoadAssetAtPath<ActionSetting>(@"Assets/Settings/MouseActionSettings/ScrollWheelActionSetting.asset");
+            scrollWheelActionSetting = AssetDatabase.LoadAssetAtPath<ActionSetting>(@"Assets/Settings/InputActionSettings/ScrollWheelActionSetting.asset");
 
-            leftStickActionSetting = AssetDatabase.LoadAssetAtPath<ActionSetting>(@"Assets/Settings/MouseActionSettings/LeftStickActionSetting.asset");
+            leftStickActionSetting = AssetDatabase.LoadAssetAtPath<ActionSetting>(@"Assets/Settings/InputActionSettings/LeftStickActionSetting.asset");
 
-            rightStickActionSetting = AssetDatabase.LoadAssetAtPath<ActionSetting>(@"Assets/Settings/MouseActionSettings/RightStickActionSetting.asset");
+            rightStickActionSetting = AssetDatabase.LoadAssetAtPath<ActionSetting>(@"Assets/Settings/InputActionSettings/RightStickActionSetting.asset");
         }
         
         private void Update()
