@@ -6,25 +6,17 @@ using UnityEditor;
 
 namespace ExtraX
 {
-    
-    public class ActionMessage
-    {
-        public float value;
-        public Vector2 axis;
-        public Vector2 position2d;
-        public Vector3 position3d;
-        public string Message;
-    }
 
+  
     public class ActionManager : Singleton<ActionManager>
     {
-        private Dictionary<string, UnityAction<ActionMessage>> actionDic;
+        private static Dictionary<string, UnityAction> actionDic;
         public ActionManager()
         {
-            actionDic = new Dictionary<string, UnityAction<ActionMessage>>();
+            actionDic = new Dictionary<string, UnityAction>();
         }
 
-        public void Add(string actionName, UnityAction<ActionMessage> action)
+        public static void Add(string actionName, UnityAction action)
         {
             if (!actionDic.ContainsKey(actionName))
             {
@@ -36,7 +28,7 @@ namespace ExtraX
             }
         }
 
-        public void Remove(string actionName, UnityAction<ActionMessage> action)
+        public static void Remove(string actionName, UnityAction action)
         {
             if(actionDic.ContainsKey(actionName))
             {
@@ -44,14 +36,9 @@ namespace ExtraX
             }
         }
 
-        public void Invoke(string actionName)
+        public static void Invoke(string actionName)
         {
-            actionDic[actionName]?.Invoke(new ActionMessage());
-        }
-
-        public void Invoke(string actionName, ActionMessage actionMessage)
-        {
-            actionDic[actionName]?.Invoke(actionMessage);
+            actionDic[actionName]?.Invoke();
         }
 
         
