@@ -7,6 +7,9 @@ public class Line : MonoBehaviour
     [SerializeField]
     Transform target;
 
+    [SerializeField]
+    float range;
+
     Transform self;
 
     LineRenderer lineRenderer;
@@ -21,7 +24,7 @@ public class Line : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(self.position,target.position) < 1.5)
+        if(Vector3.Distance(self.position,target.position) < range)
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, self.position - new Vector3(0.0f, 0.0f, 1.0f));

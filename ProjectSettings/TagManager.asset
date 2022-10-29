@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GrabOK
+  - Climbable
   layers:
   - Default
   - TransparentFX
@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 1
+    uniqueID: 3318996141
+    locked: 0
+  - name: 2
+    uniqueID: 1818720013
     locked: 0
