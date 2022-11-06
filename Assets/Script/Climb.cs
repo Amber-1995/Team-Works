@@ -6,10 +6,8 @@ public class Climb : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("zzzz");
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("wwwww");
             other.gameObject.GetComponent<Player>().SetClimb(true);
         }
     }
