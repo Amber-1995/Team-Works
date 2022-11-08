@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
-using TextState;
-using UniRx;
+//using TextState;
+//using UniRx;
 using UnityEngine.UI;
 using System;
 
 public class Robo_Controller : MonoBehaviour
 {
+    /*
     //変更前のステート名
     private string _beforeStateName;
 
@@ -74,4 +75,5 @@ public class Robo_Controller : MonoBehaviour
             .Subscribe(x => StateProcessor.State = StateDefault);
 
     }
+    */
 }

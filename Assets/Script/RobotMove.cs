@@ -12,6 +12,17 @@ public class RobotMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        switch (move)
+        {
+            //ìoÇÈ
+            case 1:
+
+            //îjâÛ
+            case 2:
+        Å@Å@//â^Ç‘
+            case 3:
+        }
     }
 
     // Update is called once per frame
@@ -33,4 +44,5 @@ public class RobotMove : MonoBehaviour
         SceneManager.LoadScene("gameover");
     }
 
+     
 }

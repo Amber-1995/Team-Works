@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Robo_Start : MonoBehaviour
 {
+    /*
     //ステートの実行を管理するクラス
     public class StateProcessor
     {
@@ -80,4 +81,5 @@ public class Robo_Start : MonoBehaviour
             }
         }
     }
+    */
 }
