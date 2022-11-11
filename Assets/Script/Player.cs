@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     float faceDrection;
 
+    bool isMoveable = true;
 
 
     // Start is called before the first frame update
@@ -60,7 +61,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        if (isMoveable)
+        {
+            Move();
+        }
+       
     }
 
     void Move()
@@ -85,6 +90,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Climb()
     {
+        isMoveable = false;
         for(int i = 0; i < climbSteps; i++)
         {
             transform.position += Vector3.up * Time.deltaTime * climbSpeed ;
@@ -95,6 +101,7 @@ public class Player : MonoBehaviour
             transform.position += Vector3.right * Time.deltaTime * climbSpeed * faceDrection;
             yield return null;
         }
+        isMoveable = true;
     }
 
 

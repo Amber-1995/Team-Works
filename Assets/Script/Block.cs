@@ -21,6 +21,8 @@ public class Block : MonoBehaviour
 
     float faceDirection;
 
+    bool isOnDrag;
+
     void Start()
     {
         self = GetComponent<Transform>();
@@ -31,11 +33,20 @@ public class Block : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        faceDirection = playerSpriteRenderer.flipX ? -1.0f : 1.0f;
+        if(!isOnDrag)
+        {
+            faceDirection = playerSpriteRenderer.flipX ? -1.0f : 1.0f;
+        }
+       
 
         if (IsDraggable() && Input.GetKey(KeyCode.F))
         {
             Drag();
+            isOnDrag = true;
+        }
+        else
+        {
+            isOnDrag = false;
         }
 
 
