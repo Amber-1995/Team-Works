@@ -12,7 +12,7 @@ public class RobotMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        /*
         switch (move)
         {
             //ìoÇÈ
@@ -22,7 +22,7 @@ public class RobotMove : MonoBehaviour
             case 2:
         Å@Å@//â^Ç‘
             case 3:
-        }
+        }*/
     }
 
     // Update is called once per frame
