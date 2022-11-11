@@ -8,6 +8,14 @@ public class RobotMove : MonoBehaviour
     Rigidbody2D rb;
     public int moveSpeed = 2;
 
+    public enum RoboAiState
+    {
+        clim,//“o‚é
+        destroy,//”j‰ó
+        carry,//‰^‚Ô
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
