@@ -8,29 +8,15 @@ public class RobotMove : MonoBehaviour
     Rigidbody2D rb;
     public int moveSpeed = 2;
 
-    public enum RoboAiState
-    {
-        clim,//ìoÇÈ
-        destroy,//îjâÛ
-        carry,//â^Ç‘
-    }
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        /*
-        switch (move)
-        {
-            //ìoÇÈ
-            case 1:
-
-            //îjâÛ
-            case 2:
-        Å@Å@//â^Ç‘
-            case 3:
-        }*/
+        
+        
     }
 
     // Update is called once per frame
@@ -44,12 +30,12 @@ public class RobotMove : MonoBehaviour
     {
         //velocity: ë¨ìx
         //Xï˚å¸Ç÷moveSpeedï™à⁄ìÆÇ≥ÇπÇÈ
-        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        //rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene("gameover");
+        //SceneManager.LoadScene("gameover");
     }
 
      

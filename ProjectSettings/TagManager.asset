@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Climbable
+  - robo
   layers:
   - Default
   - TransparentFX
