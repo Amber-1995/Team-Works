@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent (typeof(SpriteRenderer))]
-public class Player : MonoBehaviour
+public class Robot: MonoBehaviour
 { 
     [SerializeField]
     float speed;
+
 
     Transform self;
     Rigidbody2D rb;
@@ -38,27 +35,22 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-
-        if(Input.GetKeyDown(KeyCode.Space) && isClimbable && faceDrection*climbDrection >0.0f)
-        {
-            StartCoroutine("Climb");
-        }
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-       Move();
+        Move();
     }
 
     void Move()
     {
         if (!isMoveable) return;
 
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(speed, rb.velocity.y);
 
-        int direction = (int)Input.GetAxisRaw("Horizontal");
+        int direction = 1;
 
         switch (direction)
         {
@@ -70,8 +62,8 @@ public class Player : MonoBehaviour
                 spriteRenderer.flipX = true;
                 faceDrection = -1.0f;
                 break;
-        }      
-     
+        }
+
     }
 
     IEnumerator Climb()
@@ -79,17 +71,17 @@ public class Player : MonoBehaviour
         isMoveable = false;
         rb.simulated = false;
         collider2d.enabled = false;
-        for(int i = 0; i < 25; i++)
+        for (int i = 0; i < 25; i++)
         {
             self.position += Vector3.up * 0.04f;
             yield return new WaitForFixedUpdate();
         }
-        for(int i = 0; i < 25; i++)
+        for (int i = 0; i < 25; i++)
         {
             self.position += Vector3.right * 0.04f * climbDrection;
             yield return new WaitForFixedUpdate();
         }
-        for(float i = 0; i < 10; i++)
+        for (float i = 0; i < 10; i++)
         {
             yield return new WaitForFixedUpdate();
         }
@@ -108,5 +100,7 @@ public class Player : MonoBehaviour
     {
         this.climbDrection = climbDrection;
     }
+
+
 
 }

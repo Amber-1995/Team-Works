@@ -9,7 +9,7 @@ public class SetClimb : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().SetClimb(true);
+           // other.gameObject.GetComponent<Player>().SetClimb(true);
         }
     }
 
@@ -17,7 +17,7 @@ public class SetClimb : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().SetClimb(false);
+           // other.gameObject.GetComponent<Player>().SetClimb(false);
         }
     }
 }
