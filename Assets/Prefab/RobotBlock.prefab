@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2699292987139957635}
   - component: {fileID: 2699292987139957639}
   - component: {fileID: 2699292987139957632}
+  - component: {fileID: 4186748771428081346}
   m_Layer: 0
   m_Name: RobotBlock
   m_TagString: Untagged
@@ -149,3 +150,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!114 &4186748771428081346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699292987139957660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25152e53bdb25d4b92df7a938eadebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTrans: {fileID: 0}
+  robotTrans: {fileID: 0}
+  rangeX: 0
+  rangeY: 0

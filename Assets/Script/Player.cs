@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isClimbable && faceDrection*climbDrection >0.0f)
         {
             StartCoroutine("Climb");
+            isClimbable = false;
         }
     }
 

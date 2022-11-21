@@ -20,11 +20,15 @@ public class ClimbCheck : MonoBehaviour
 
     Player player;
 
+    Robot robot;
+
     private void Start()
     {
         self = GetComponent<Transform>();
 
         player = playerTrans.GetComponent<Player>();
+
+        robot = robotTrans.GetComponent<Robot>();
     }
 
     // Update is called once per frame
@@ -35,10 +39,11 @@ public class ClimbCheck : MonoBehaviour
             player.SetClimb(true);
             player.SetClimbDrection(playerTrans.position.x < self.position.x ? 1.0f : -1.0f);
         }
-        else
+
+        if(Check(robotTrans.position.x, robotTrans.position.y))
         {
-            Debug.Log("2333");
-            player.SetClimb(false);
+            robot.SetClimb(true);
+            player.SetClimbDrection(1.0f);
         }
     }
 

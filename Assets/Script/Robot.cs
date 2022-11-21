@@ -18,9 +18,9 @@ public class Robot: MonoBehaviour
 
     bool isClimbable = false;
 
-    float horizontal;
+    bool activeClimbable = false;
 
-    float faceDrection;
+    bool onClimbable = false;
 
     float climbDrection = 1.0f;
 
@@ -42,6 +42,13 @@ public class Robot: MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
+        if(!onClimbable && isClimbable && activeClimbable)
+        {
+            onClimbable = true;
+            isClimbable = false;
+            StartCoroutine("Climb");
+        }
     }
 
     void Move()
@@ -56,11 +63,9 @@ public class Robot: MonoBehaviour
         {
             case 1:
                 spriteRenderer.flipX = false;
-                faceDrection = 1.0f;
                 break;
             case -1:
                 spriteRenderer.flipX = true;
-                faceDrection = -1.0f;
                 break;
         }
 
@@ -89,6 +94,7 @@ public class Robot: MonoBehaviour
         isMoveable = true;
         rb.simulated = true;
         collider2d.enabled = true;
+        onClimbable = false;
     }
 
     public void SetClimb(bool isClimbable)
@@ -99,6 +105,11 @@ public class Robot: MonoBehaviour
     public void SetClimbDrection(float climbDrection)
     {
         this.climbDrection = climbDrection;
+    }
+
+    public void SetActiveClimbable(bool activeClimbable)
+    {
+        this.activeClimbable = activeClimbable;
     }
 
 

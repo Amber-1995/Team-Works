@@ -8,6 +8,9 @@ public class Line : MonoBehaviour
     Transform target;
 
     [SerializeField]
+    Robot robot;
+
+    [SerializeField]
     float range;
 
     Transform self;
@@ -29,10 +32,12 @@ public class Line : MonoBehaviour
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, self.position - new Vector3(0.0f, 0.0f, 1.0f));
             lineRenderer.SetPosition(1, target.position - new Vector3(0.0f, 0.0f, 1.0f));
+            robot.SetActiveClimbable(true);
         }
         else
         {
             lineRenderer.enabled = false;
+            robot.SetActiveClimbable(false);
         }
        
     }
