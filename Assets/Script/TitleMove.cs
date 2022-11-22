@@ -9,6 +9,6 @@ public class TitleMove : MonoBehaviour
     public void Onclick()
     {
         //Debug.Log("‰Ÿ‚µ‚½");
-        SceneManager.LoadScene("maingame");
+        SceneManager.LoadScene("test3");
     }
 }
