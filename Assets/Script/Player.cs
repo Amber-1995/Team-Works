@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
 
     bool isMoveable = true;
 
-    bool isClimbable = false;
-
     float horizontal;
 
     float faceDrection;
@@ -39,12 +37,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
-
-        if(Input.GetKeyDown(KeyCode.Space) && isClimbable && faceDrection*climbDrection >0.0f)
-        {
-            StartCoroutine("Climb");
-            isClimbable = false;
-        }
     }
 
     // Update is called once per frame
@@ -75,39 +67,13 @@ public class Player : MonoBehaviour
      
     }
 
-    IEnumerator Climb()
+    public void Climb()
     {
-        isMoveable = false;
-        rb.simulated = false;
-        collider2d.enabled = false;
-        for(int i = 0; i < 25; i++)
-        {
-            self.position += Vector3.up * 0.04f;
-            yield return new WaitForFixedUpdate();
-        }
-        for(int i = 0; i < 25; i++)
-        {
-            self.position += Vector3.right * 0.04f * climbDrection;
-            yield return new WaitForFixedUpdate();
-        }
-        for(float i = 0; i < 10; i++)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        isMoveable = true;
-        rb.simulated = true;
-        collider2d.enabled = true;
+        isMoveable = !isMoveable;
+        rb.simulated = !rb.simulated;
+        collider2d.enabled = !collider2d.enabled;
     }
 
-    public void SetClimb(bool isClimbable)
-    {
-        this.isClimbable = isClimbable;
-    }
-
-    public void SetClimbDrection(float climbDrection)
-    {
-        this.climbDrection = climbDrection;
-    }
+   
 
 }

@@ -16,9 +16,14 @@ public class ClimbCheck : MonoBehaviour
     [SerializeField]
     float rangeY;
 
+    [SerializeField]
+    Vector3[] routeKey;
+
     Transform self;
 
     Player player;
+
+    bool isPlayerOnClimb = false;
 
     Robot robot;
 
@@ -28,22 +33,16 @@ public class ClimbCheck : MonoBehaviour
 
         player = playerTrans.GetComponent<Player>();
 
-        robot = robotTrans.GetComponent<Robot>();
+        //robot = robotTrans.GetComponent<Robot>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Check(playerTrans.position.x, playerTrans.position.y))
+        if (Check(playerTrans.position.x, playerTrans.position.y) && !isPlayerOnClimb && Input.GetKeyDown(KeyCode.Space))
         {
-            player.SetClimb(true);
-            player.SetClimbDrection(playerTrans.position.x < self.position.x ? 1.0f : -1.0f);
-        }
-
-        if(Check(robotTrans.position.x, robotTrans.position.y))
-        {
-            robot.SetClimb(true);
-            player.SetClimbDrection(1.0f);
+            isPlayerOnClimb=true;
+            StartCoroutine("PlayerClimb");
         }
     }
 
@@ -54,10 +53,33 @@ public class ClimbCheck : MonoBehaviour
         Gizmos.DrawLine(transform.position + new Vector3(-rangeX, -rangeY, 0.0f), transform.position + new Vector3(rangeX, -rangeY, 0.0f));
         Gizmos.DrawLine(transform.position + new Vector3(rangeX, -rangeY, 0.0f), transform.position + new Vector3(rangeX, rangeY, 0.0f));
         Gizmos.DrawLine(transform.position + new Vector3(-rangeX, -rangeY, 0.0f), transform.position + new Vector3(-rangeX, rangeY, 0.0f));
+
+        foreach(Vector3 key in routeKey)
+        {
+            Gizmos.DrawSphere(transform.position + key,0.1f);
+        }
     }
 
     bool Check(float x, float y)
     {
         return (x > self.position.x - rangeX && x < self.position.x + rangeX && y > self.position.y - rangeY && y < self.position.y + rangeY);
+    }
+
+    IEnumerator PlayerClimb()
+    {
+        player.Climb();
+        //playerTrans.position = self.position;
+        foreach(Vector3 key in routeKey)
+        {
+            Vector3 start = playerTrans.position;
+            for(float i = 0.0f; i <=1.0f;i+=0.05f)
+            {
+                playerTrans.position = Vector3.Lerp(start, self.position + key, i);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        player.Climb();
+        isPlayerOnClimb = false;
+
     }
 }
