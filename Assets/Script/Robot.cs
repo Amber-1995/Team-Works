@@ -2,10 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum RobotMotion : int
+{
+    CLIMB = 0,
+    PUSH = 1,
+    DESTORY = 2,
+}
+
 public class Robot: MonoBehaviour
-{ 
+{
+    public static GameObject instance;
+
     [SerializeField]
     float speed;
+
+    [HideInInspector]
+    public bool[] robotMotionReady = new bool[3];
+
+    [HideInInspector]
+    public bool[] robotMotionAction = new bool[3];
 
 
     Transform self;
@@ -24,7 +40,17 @@ public class Robot: MonoBehaviour
 
     float climbDrection = 1.0f;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         self = GetComponent<Transform>();
@@ -42,13 +68,6 @@ public class Robot: MonoBehaviour
     void FixedUpdate()
     {
         Move();
-
-        if(!onClimbable && isClimbable && activeClimbable)
-        {
-            onClimbable = true;
-            isClimbable = false;
-            StartCoroutine("Climb");
-        }
     }
 
     void Move()
@@ -71,45 +90,13 @@ public class Robot: MonoBehaviour
 
     }
 
-    IEnumerator Climb()
-    {
-        isMoveable = false;
-        rb.simulated = false;
-        collider2d.enabled = false;
-        for (int i = 0; i < 25; i++)
-        {
-            self.position += Vector3.up * 0.04f;
-            yield return new WaitForFixedUpdate();
-        }
-        for (int i = 0; i < 25; i++)
-        {
-            self.position += Vector3.right * 0.04f * climbDrection;
-            yield return new WaitForFixedUpdate();
-        }
-        for (float i = 0; i < 10; i++)
-        {
-            yield return new WaitForFixedUpdate();
-        }
 
-        isMoveable = true;
-        rb.simulated = true;
-        collider2d.enabled = true;
-        onClimbable = false;
-    }
-
-    public void SetClimb(bool isClimbable)
+    public void Climb()
     {
-        this.isClimbable = isClimbable;
-    }
-
-    public void SetClimbDrection(float climbDrection)
-    {
-        this.climbDrection = climbDrection;
-    }
-
-    public void SetActiveClimbable(bool activeClimbable)
-    {
-        this.activeClimbable = activeClimbable;
+        isMoveable = !isMoveable;
+        rb.simulated = !rb.simulated;
+        collider2d.enabled = !collider2d.enabled;
+        Debug.Log("233");
     }
 
 

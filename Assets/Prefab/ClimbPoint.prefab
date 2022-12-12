@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25152e53bdb25d4b92df7a938eadebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbers:
-  - {fileID: 0}
-  rangeX: 1
-  rangeY: 1
+  rangeX: 0.5
+  rangeY: 0.5
+  routeKey: []
+  ctrlKey: 32

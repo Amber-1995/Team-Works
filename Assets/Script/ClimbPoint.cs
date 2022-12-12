@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClimbCheck : MonoBehaviour
+public class ClimbPoint : MonoBehaviour
 {
-    [SerializeField]
-    Transform playerTrans;
-
-    [SerializeField]
-    Transform robotTrans;
 
     [SerializeField]
     float rangeX;
@@ -19,30 +14,49 @@ public class ClimbCheck : MonoBehaviour
     [SerializeField]
     Vector3[] routeKey;
 
+    [SerializeField]
+    KeyCode ctrlKey = KeyCode.Space;
+
+    Transform playerTrans;
+
+    Transform robotTrans;
+
     Transform self;
 
     Player player;
 
+    Robot robot;
+
     bool isPlayerOnClimb = false;
 
-    Robot robot;
+    bool isRobotOnClimb = false;
 
     private void Start()
     {
+        playerTrans = Player.instance.GetComponent<Transform>();
+
+        robotTrans = Robot.instance.GetComponent<Transform>();
+
         self = GetComponent<Transform>();
 
         player = playerTrans.GetComponent<Player>();
 
-        //robot = robotTrans.GetComponent<Robot>();
-    }
+        robot = robotTrans.GetComponent<Robot>();
 
-    // Update is called once per frame
+    }
     void Update()
     {
-        if (Check(playerTrans.position.x, playerTrans.position.y) && !isPlayerOnClimb && Input.GetKeyDown(KeyCode.Space))
+        if (Check(playerTrans.position.x, playerTrans.position.y) && !isPlayerOnClimb && Input.GetKeyDown(ctrlKey))
         {
             isPlayerOnClimb=true;
             StartCoroutine("PlayerClimb");
+        }
+
+
+        if(Check(robotTrans.position.x, robotTrans.position.y) && robot.robotMotionReady[(int)RobotMotion.CLIMB])
+        {
+            isRobotOnClimb = true;
+            StartCoroutine("RobotClimb");
         }
     }
 
@@ -80,6 +94,23 @@ public class ClimbCheck : MonoBehaviour
         }
         player.Climb();
         isPlayerOnClimb = false;
+
+    }
+
+    IEnumerator RobotClimb()
+    {
+        robot.Climb();
+        foreach (Vector3 key in routeKey)
+        {
+            Vector3 start = robotTrans.position;
+            for (float i = 0.0f; i <= 1.0f; i += 0.05f)
+            {
+                robotTrans.position = Vector3.Lerp(start, self.position + key, i);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        robot.Climb();
+        isRobotOnClimb = false;
 
     }
 }

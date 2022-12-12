@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent (typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
-{ 
+{
+    public static GameObject instance;
+
     [SerializeField]
     float speed;
 
@@ -21,13 +23,20 @@ public class Player : MonoBehaviour
 
     float horizontal;
 
-    float faceDrection;
-
-    float climbDrection = 1.0f;
-
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
+      
         self = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -57,11 +66,9 @@ public class Player : MonoBehaviour
         {
             case 1:
                 spriteRenderer.flipX = false;
-                faceDrection = 1.0f;
                 break;
             case -1:
                 spriteRenderer.flipX = true;
-                faceDrection = -1.0f;
                 break;
         }      
      

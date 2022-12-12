@@ -7,12 +7,7 @@ public class GOAL : MonoBehaviour
     [SerializeField] GameObject Goaltext;
     [SerializeField] GameObject GameOvertext;
 
-    void Start()
-    {
-        Goaltext.SetActive(false);
-        GameOvertext.SetActive(false);
-    }
-
+  
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -21,7 +16,7 @@ public class GOAL : MonoBehaviour
             Goaltext.SetActive(true);
         }
 
-        if(collision.gameObject.name == "Robot")
+        if(collision.gameObject.tag == "Robot")
         { 
             Debug.Log("GAMEOVER!");
             GameOvertext.SetActive(true);
