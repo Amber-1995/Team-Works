@@ -34,13 +34,21 @@ public class TextMeshPro : MonoBehaviour
         color.a = Mathf.Sin(time) * 0.5f + 0.5f;
         text.color = color;
         */
+        
         text.color = GetAlphaColor(text.color);
+
     }
 
     Color GetAlphaColor(Color color)
     {
         time += Time.deltaTime * 4.0f * speed;
         color.a = Mathf.Sin(time);
+
+        if(Input.GetKeyUp("space"))
+        {
+            Debug.Log("hello");
+            time += Time.deltaTime * 20.0f * speed;
+        }
 
         return color;
     }
