@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class GOAL : MonoBehaviour
 {
-    [SerializeField] GameObject Goaltext;
-    [SerializeField] GameObject GameOvertext;
+
 
   
     public void OnCollisionEnter2D(Collision2D collision)
@@ -13,13 +13,13 @@ public class GOAL : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("GOAL!!");
-            Goaltext.SetActive(true);
+            SceneManager.LoadScene("clear");
         }
 
         if(collision.gameObject.tag == "Robot")
         { 
             Debug.Log("GAMEOVER!");
-            GameOvertext.SetActive(true);
+            SceneManager.LoadScene("gameover");
         }
     }
 
