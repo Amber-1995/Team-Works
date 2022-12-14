@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
 {
     public static GameObject instance;
 
+    //アニメーションで使用する変数
+    Animator anim;
+
     [SerializeField]
     float speed;
 
@@ -22,6 +25,8 @@ public class Player : MonoBehaviour
     bool isMoveable = true;
 
     float horizontal;
+
+    
 
     private void Awake()
     {
@@ -41,21 +46,34 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider2d = GetComponent<Collider2D>();
-
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
+
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-       Move();
+        if (horizontal != 0)
+        {
+            anim.SetBool("isWalk", true);
+        }
+        else
+        {
+            anim.SetBool("isWalk", false);
+        }
+
+        Move();
     }
 
     void Move()
     {
+        
+
         if (!isMoveable) return;
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -81,6 +99,6 @@ public class Player : MonoBehaviour
         collider2d.enabled = !collider2d.enabled;
     }
 
-   
+    
 
 }
