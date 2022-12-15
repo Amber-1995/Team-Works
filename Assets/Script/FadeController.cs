@@ -27,6 +27,7 @@ public class FadeController : MonoBehaviour
         green = fadeimage.color.g;
         blue = fadeimage.color.b;
         alfa = fadeimage.color.a;
+
     }
 
 
@@ -36,14 +37,15 @@ public class FadeController : MonoBehaviour
         {
             StartfadeIn(); //フェードイン関数
         }
-        if (isFadeOut)
+        if (Input.GetKeyUp("space"))
         {
-            StartfadeOut();//フェードアウト関数
+            fadespeed = 0.005f;
+            StartfadeOut();
         }
     }
 
 
-    void StartfadeIn()
+    public void StartfadeIn()
     {
         alfa -= fadespeed;        //不透明度を徐々に下げる
         SetAlpha();               //変更した不透明度パネルに反映する
@@ -55,8 +57,9 @@ public class FadeController : MonoBehaviour
     }
 
 
-    void StartfadeOut()
+    public void StartfadeOut()
     {
+        isFadeOut = true;
         fadeimage.enabled = true; // パネルの表示をオンにする
         alfa += fadespeed;        // 不透明度を徐々にあげる
         SetAlpha();               // 変更した透明度をパネルに反映する

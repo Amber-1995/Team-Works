@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 //using TMPro; // TextMeshProÇégÇ§èÍçá
 
 public class TextMeshPro : MonoBehaviour
@@ -46,6 +48,8 @@ public class TextMeshPro : MonoBehaviour
 
         if(Input.GetKeyUp("space"))
         {
+            SceneManager.LoadScene("StageSelect");
+
             Debug.Log("hello");
             time += Time.deltaTime * 20.0f * speed;
         }
