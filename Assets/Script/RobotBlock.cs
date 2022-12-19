@@ -40,6 +40,8 @@ public class RobotBlock : MonoBehaviour
 
     bool onCtrl;
 
+    Animator playerAnimator;
+
 
     void Start()
     {
@@ -52,6 +54,8 @@ public class RobotBlock : MonoBehaviour
         self = GetComponent<Transform>();
 
         rb = GetComponent<Rigidbody2D>();
+
+        playerAnimator = Player.instance.GetComponent<Animator>();
 
         x = playerTrans.position.x;
 
@@ -89,6 +93,7 @@ public class RobotBlock : MonoBehaviour
                 SetClimbPointsActive(false);
             }
             onCtrl = true;
+            playerAnimator.SetBool("isPush", true);
             
         }
         else
@@ -99,6 +104,7 @@ public class RobotBlock : MonoBehaviour
                 SetClimbPointsActive(true);
             }
             onCtrl = false;
+            playerAnimator.SetBool("isPush", false);
         }
        
     }
