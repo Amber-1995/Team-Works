@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public static GameObject instance;
 
     //アニメーションで使用する変数
-    Animator anim;
+   public static Animator anim;
 
     [SerializeField]
     float speed;
@@ -55,16 +55,20 @@ public class Player : MonoBehaviour
         
     }
 
+    
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (horizontal != 0)
         {
-            anim.SetBool("isWalk", true);
+           anim.SetBool("isWalk", true);
+           anim.SetBool("isPush", false);
         }
         else
         {
-            anim.SetBool("isWalk", false);
+           anim.SetBool("isWalk", false);
+            //anim.SetBool("isPush", true);
         }
 
         Move();

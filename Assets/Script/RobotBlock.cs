@@ -57,6 +57,8 @@ public class RobotBlock : MonoBehaviour
 
         playerAnimator = Player.instance.GetComponent<Animator>();
 
+        //playerAnimator = Player.anim;
+
         x = playerTrans.position.x;
 
         onCtrl = false;
@@ -82,10 +84,11 @@ public class RobotBlock : MonoBehaviour
         }
         lineRenderer.enabled = lineEnabled;
 
-
+     
 
         if (Input.GetKey(ctrlKey) && IsInRange(playerTrans))
         {
+            
             if (!onCtrl)
             {
                 self.position += playerTrans.position.x > self.position.x ? Vector3.left * 0.1f : Vector3.right * 0.1f;
@@ -94,7 +97,8 @@ public class RobotBlock : MonoBehaviour
             }
             onCtrl = true;
             playerAnimator.SetBool("isPush", true);
-            
+            playerAnimator.SetBool("isWalk", false);
+            playerAnimator.SetBool("isIdle", false);
         }
         else
         {
@@ -104,7 +108,9 @@ public class RobotBlock : MonoBehaviour
                 SetClimbPointsActive(true);
             }
             onCtrl = false;
-            playerAnimator.SetBool("isPush", false);
+            //playerAnimator.SetBool("isPush", false);
+            //playerAnimator.SetBool("isWalk", true);
+            //playerAnimator.SetBool("isWalk", true);
         }
        
     }
