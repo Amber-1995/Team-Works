@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 //using TMPro; // TextMeshProÇégÇ§èÍçá
 
 public class TextMeshPro : MonoBehaviour
@@ -34,13 +36,23 @@ public class TextMeshPro : MonoBehaviour
         color.a = Mathf.Sin(time) * 0.5f + 0.5f;
         text.color = color;
         */
+        
         text.color = GetAlphaColor(text.color);
+
     }
 
     Color GetAlphaColor(Color color)
     {
         time += Time.deltaTime * 4.0f * speed;
         color.a = Mathf.Sin(time);
+
+        if(Input.GetKeyUp("space"))
+        {
+            SceneManager.LoadScene("StageSelect");
+
+            Debug.Log("hello");
+            time += Time.deltaTime * 20.0f * speed;
+        }
 
         return color;
     }
