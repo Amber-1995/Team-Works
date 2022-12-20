@@ -37,10 +37,16 @@ public class FadeController : MonoBehaviour
         {
             StartfadeIn(); //フェードイン関数
         }
+
+        if(isFadeOut) 
+        {
+            StartfadeOut();
+        }
+
         if (Input.GetKeyUp("space"))
         {
             fadespeed = 0.005f;
-            StartfadeOut();
+            isFadeOut = true;
         }
     }
 
