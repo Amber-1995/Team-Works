@@ -51,8 +51,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
-
-        
     }
 
     
@@ -63,12 +61,12 @@ public class Player : MonoBehaviour
         if (horizontal != 0)
         {
            anim.SetBool("isWalk", true);
-           anim.SetBool("isPush", false);
+            anim.SetBool("isIdle", false);
         }
         else
         {
            anim.SetBool("isWalk", false);
-            //anim.SetBool("isPush", true);
+           anim.SetBool("isIdle", true);
         }
 
         Move();
@@ -76,24 +74,25 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        
 
         if (!isMoveable) return;
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        int direction = (int)Input.GetAxisRaw("Horizontal");
 
-        switch (direction)
+        if (anim.GetBool("isWalk") || anim.GetBool("isIdle"))
         {
-            case 1:
-                spriteRenderer.flipX = false;
-                break;
-            case -1:
-                spriteRenderer.flipX = true;
-                break;
-        }      
-     
+            int direction = (int)Input.GetAxisRaw("Horizontal");
+            switch (direction)
+            {
+                case 1:
+                    spriteRenderer.flipX = false;
+                    break;
+                case -1:
+                    spriteRenderer.flipX = true;
+                    break;
+            }
+        }
     }
 
     public void Climb()

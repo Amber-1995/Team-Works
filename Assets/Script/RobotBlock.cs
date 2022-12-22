@@ -96,9 +96,6 @@ public class RobotBlock : MonoBehaviour
                 SetClimbPointsActive(false);
             }
             onCtrl = true;
-            playerAnimator.SetBool("isPush", true);
-            playerAnimator.SetBool("isWalk", false);
-            playerAnimator.SetBool("isIdle", false);
         }
         else
         {
@@ -109,8 +106,7 @@ public class RobotBlock : MonoBehaviour
             }
             onCtrl = false;
             //playerAnimator.SetBool("isPush", false);
-            //playerAnimator.SetBool("isWalk", true);
-            //playerAnimator.SetBool("isWalk", true);
+           // playerAnimator.SetBool("isIdle", true);
         }
        
     }
@@ -119,7 +115,7 @@ public class RobotBlock : MonoBehaviour
     {
         if (onCtrl)
         {
-           
+       
             if (push && x < playerTrans.position.x)
             {
                 self.position += Vector3.right * (playerTrans.position.x - x);
@@ -128,6 +124,14 @@ public class RobotBlock : MonoBehaviour
             {
                 self.position += Vector3.right * (playerTrans.position.x - x);
             }
+            playerAnimator.SetBool("isPush", true);
+            playerAnimator.SetBool("isWalk", false);
+            playerAnimator.SetBool("isIdle", false);
+        }
+        else
+        {
+           //playerAnimator.SetBool("isPush", false);
+           // playerAnimator.SetBool("isWalk", true);
         }
         x = playerTrans.position.x;
     }
